@@ -22,7 +22,7 @@ def interslice(input_file):
     one_fifth_of_rows = int(0.20 * number_of_rows)
     i = 0
     while i < one_fifth_of_rows:
-        rand_number = random.randint(0,number_of_rows)
+        rand_number = random.randint(0,number_of_rows - 1)
         nope = 0
         for j in rand_rows:
             if rand_number == j:
