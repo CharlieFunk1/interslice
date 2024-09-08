@@ -48,7 +48,7 @@ def interslice(input_file):
     train_iter = 0
     while i < number_of_rows:
         for r in rand_rows:
-            if (i == r and test_iter < 30):
+            if (i == r and test_iter < len(rand_rows)):
                 X_test[test_iter] = data_file[[r],0:(number_of_columns - 1)]
                 y_test_list.append(y_test[rand_rows[test_iter], (number_of_columns - 1)])
                 test_iter += 1
@@ -60,6 +60,7 @@ def interslice(input_file):
                 train_iter += 1
         i += 1
 
+    
     #print(data_file[[0], :])
     #print(rand_rows)
     #print("****************************TRAIN************************")    
