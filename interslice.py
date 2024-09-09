@@ -1,7 +1,7 @@
 #Input and output:
 #interslice(<text.file>) Takes a data or txt file as input 
-#X_train, y_train, X_test, y_test = interslice(<text.file>)
-#Outputs to 4 arrays^
+#X_train, y_train, X_test, y_test, output_key= interslice(<text.file>)
+#Outputs to 5 arrays^
 
 import numpy as np
 import random
@@ -30,7 +30,7 @@ def interslice(input_file):
         if nope == 0:
             rand_rows.append(rand_number)
             i += 1
-    print(rand_rows)
+    #print(rand_rows)
     i = 0
     #train = np.empty([120, 5])
     #test = np.empty([30, 5])
@@ -60,24 +60,67 @@ def interslice(input_file):
                 train_iter += 1
         i += 1
 
+    #print(y_train_list)
+    #print(len(y_train_list))
+    j = 0
+    number_of_entries = 0
+    list_of_outputs = []
+    y_train_list_num = np.zeros(shape = (int(number_of_rows - (number_of_rows * 0.2)), 1), dtype=int)
+    #print(len(y_train_list))
+    list_of_outputs.append([y_train_list[0], number_of_entries])
+    while j < (len(y_train_list) - 1):
+        y_train_list_num[j] = number_of_entries
+        if list_of_outputs[number_of_entries][0] != y_train_list[(j + 1)]:
+            list_of_outputs.append([y_train_list[j + 1], number_of_entries + 1])
+            number_of_entries += 1
+        #print(j)
+        #print(number_of_entries)
+        #print(y_train_list_num[j], y_train_list[j])
+        j += 1
+    y_train_list_num[j] = number_of_entries
+
+    k = 0
+    L = 0
+    y_test_list_num = np.zeros(shape = (int(number_of_rows - (number_of_rows * 0.8)), 1), dtype=int)
+    while k <= (len(y_test_list) - 1):
+        L = 0 
+        while L < len(list_of_outputs):
+            if y_test_list[k] == list_of_outputs[L][0]:
+                y_test_list_num[k] = list_of_outputs[L][1]
+            L += 1
+        
+        #print(y_test_list_num[k], y_test_list[k])
+        k += 1
+        
+    #y_test_list_num[k] = list_of_outputs[L][1]
+
+    return X_train, y_train_list_num, X_test, y_test_list_num, list_of_outputs
+
+
+    #print(y_test_list_num)
+    #print(list_of_outputs)
     
     #print(data_file[[0], :])
     #print(rand_rows)
     #print("****************************TRAIN************************")    
-    print(X_train)
-    print(y_train_list)
+    #print(X_train)
+    #print(y_train_list)
     #print(len(y_train_list))
     #print(y_train)
     #print("****************************TEST************************")    
-    print(X_test)
+    #print(X_test)
     #print(y_test)
-    print(y_test_list)
+    #print(y_test_list)
     #print(y_train_list)
-interslice("iris.data")
+#X_train_final, y_train_final, X_test_final, y_test_final, output_key = interslice("iris.data")
 
-        
-
-
-
-
+#q = 0
+#while q < 120:
+#    print (X_train_final[q], y_train_final[q], q)
+#    q += 1
+#
+#w = 0
+#while w < 30:
+#    print(X_test_final[w], y_test_final[w], w, y_test_list_inter[w])
+#    w += 1
 
