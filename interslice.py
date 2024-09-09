@@ -7,9 +7,9 @@ import numpy as np
 import random
 
 
-#MODE can either be random or linear.  Linear splits 20% of the data off the end for testing.  Random randomly selects 20% of the data for testing. This will eventually be an argument.
-MODE = "random"
-input_file = "iris.data"
+#MODE TODO can either be random or linear.  Linear splits 20% of the data off the end for testing.  Random randomly selects 20% of the data for testing. This will eventually be an argument.
+#MODE = "random"
+#input_file = "iris.data"
 
 def interslice(input_file):
     data_file = np.loadtxt(input_file, dtype=str, delimiter=",")
